@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { Link, withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import { Nav } from '../common';
 
 class HomeContainer extends Component {
@@ -21,7 +21,7 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <Nav>
+      <Nav data-flex="main:center cross:center">
         <Link to="/home/all">全部</Link>
         <Link to="/home/essence">精华</Link>
         <Link to="/home/share">分享</Link>
