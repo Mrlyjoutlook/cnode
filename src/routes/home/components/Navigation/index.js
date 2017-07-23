@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav } from '../common';
+import { Nav } from '../../../../components/Element';
 
 class HomeContainer extends Component {
   static propTypes = {

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { withRouter } from 'react-router';
-import { Page } from '../common';
-import SceneTransition from '../../../../components/SceneTransition';
+import { HomePage } from '../../../../components/Element';
 import Navigation from '../Navigation';
 
 class HomeContainer extends Component {
@@ -23,11 +22,9 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <SceneTransition>
-        <Page>
-          <Navigation />
-        </Page>
-      </SceneTransition>
+      <HomePage>
+        <Navigation />
+      </HomePage>
     );
   }
 }

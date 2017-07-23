@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { Page, Button } from '../common';
-import SceneTransition from '../../../../components/SceneTransition';
+import { LoginPage, Button } from '../../../../components/Element';
 
 class LoginContainer extends Component {
   static propTypes = {
@@ -21,11 +20,9 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <SceneTransition direction="y">
-        <Page>
-          <Button data-flex="main:center cross:center" onClick={this.handleOnClick}>login</Button>
-        </Page>
-      </SceneTransition>
+      <LoginPage>
+        <Button data-flex="main:center cross:center" onClick={this.handleOnClick}>login</Button>
+      </LoginPage>
     );
   }
 }

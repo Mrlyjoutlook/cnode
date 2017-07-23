@@ -6,6 +6,8 @@ import { adminRoute, loginRoute } from '../../config/routesConfig';
 import LoginRoute from '../../routes/login';
 import HomeRoute from '../../routes/home';
 import AdminRoute from '../../routes/admin';
+import NotFoundRoute from '../../routes/notFound';
+import PageTransition from '../../components/PageTransition';
 import '../../styles/index.css';
 
 require('normalize.css');
@@ -28,12 +30,22 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Switch>
-            <HomeRoute exact path="/" />
-            <LoginRoute path={loginRoute.path} store={store} />
-            <AdminRoute path={adminRoute.path} store={store} />
-            <Route render={() => <h1>Not Found</h1>} />
-          </Switch>
+          <Route
+            render={({ location }) => {
+              return (
+                <PageTransition>
+                  <div key={location.pathname}>
+                    <Switch location={location} >
+                      <HomeRoute exact path="/" />
+                      <LoginRoute path={loginRoute.path} store={store} />
+                      <AdminRoute path={adminRoute.path} store={store} />
+                      <NotFoundRoute />
+                    </Switch>
+                  </div>
+                </PageTransition>
+              );
+            }}
+          />
         </Router>
       </Provider>
     );
@@ -41,6 +53,8 @@ class App extends Component {
 }
 
 export default App;
+
+// {...location.pathname.indexOf('login') !== -1 ? { direction: 'top' } : {}}
 
 // <div>
 //             <ul>
