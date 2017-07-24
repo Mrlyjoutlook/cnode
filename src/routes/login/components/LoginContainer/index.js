@@ -18,9 +18,14 @@ class LoginContainer extends Component {
     history.push('/');
   }
 
+  handleGoBack = () => {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <LoginPage>
+        <Button data-flex="main:center cross:center" onClick={this.handleGoBack}>goBack</Button>
         <Button data-flex="main:center cross:center" onClick={this.handleOnClick}>login</Button>
       </LoginPage>
     );

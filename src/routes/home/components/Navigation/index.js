@@ -23,7 +23,7 @@ class HomeContainer extends Component {
     return (
       <Nav data-flex="main:center cross:center">
         <Link to="/home/all">全部</Link>
-        <Link to="/home/essence">精华</Link>
+        <Link to="/login">精华</Link>
         <Link to="/home/share">分享</Link>
         <Link to="/home/answer">回答</Link>
         <Link to="/home/job">招聘</Link>

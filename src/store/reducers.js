@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-export const makeRootReducer = (asyncReducers) => {
+const makeRootReducer = (asyncReducers) => {
   return combineReducers({
-    ...asyncReducers
+    ...asyncReducers,
   });
 };
 

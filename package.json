@@ -10,12 +10,11 @@
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
-    "lint:css": "stylelint './src/routes/login/components/Button.js'",
     "clean": "rimraf dist/*"
   },
   "betterScripts": {
     "dev": {
-      "command": "nodemon bin/dev-server --ignore dist --ignore public --ignore src && npm run lint:css",
+      "command": "nodemon bin/dev-server --ignore dist --ignore public --ignore src",
       "env": {
         "DEBUG": "app:*",
         "NODE_ENV": "development"
@@ -117,6 +116,7 @@
   "license": "ISC",
   "dependencies": {
     "flex.css": "^1.1.7",
+    "immutable": "^3.8.1",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
@@ -130,6 +130,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "react-transition-group": "^1.2.0",
     "redux": "^3.6.0",
+    "redux-immutable": "^4.0.0",
     "redux-saga": "^0.15.4",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.1"

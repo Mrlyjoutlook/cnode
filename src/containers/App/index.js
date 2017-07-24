@@ -8,6 +8,7 @@ import HomeRoute from '../../routes/home';
 import AdminRoute from '../../routes/admin';
 import NotFoundRoute from '../../routes/notFound';
 import PageTransition from '../../components/PageTransition';
+import { saveoldLocation } from '../../modules/appActions';
 import '../../styles/index.css';
 
 require('normalize.css');
@@ -26,17 +27,18 @@ class App extends Component {
 
   render() {
     const { store } = this.props;
-
+    const { getState } = store;
     return (
       <Provider store={store}>
         <Router>
           <Route
             render={({ location }) => {
+              const direction = getState().appState.getIn(['oldLocation', 'pathname']) === location.pathname ? '-x' : 'x';
               return (
-                <PageTransition>
+                <PageTransition direction={direction}>
                   <div key={location.pathname}>
                     <Switch location={location} >
-                      <HomeRoute exact path="/" />
+                      <HomeRoute exact path="/" store={store} />
                       <LoginRoute path={loginRoute.path} store={store} />
                       <AdminRoute path={adminRoute.path} store={store} />
                       <NotFoundRoute />
