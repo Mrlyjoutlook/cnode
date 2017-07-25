@@ -8,7 +8,6 @@ import HomeRoute from '../../routes/home';
 import AdminRoute from '../../routes/admin';
 import NotFoundRoute from '../../routes/notFound';
 import PageTransition from '../../components/PageTransition';
-import { saveoldLocation } from '../../modules/appActions';
 import '../../styles/index.css';
 
 require('normalize.css');

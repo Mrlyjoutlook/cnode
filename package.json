@@ -115,6 +115,7 @@
   "author": "mrlyj",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "flex.css": "^1.1.7",
     "immutable": "^3.8.1",
     "lib-flexible": "^0.3.2",

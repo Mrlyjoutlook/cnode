@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { Nav } from '../../../../components/Element';
+
+const NavLinkStyle = {
+  textDecoration: 'none',
+  color: '#ace9f1',
+}
 
 class HomeContainer extends Component {
   static propTypes = {
@@ -22,11 +27,11 @@ class HomeContainer extends Component {
   render() {
     return (
       <Nav data-flex="main:center cross:center">
-        <Link to="/home/all">全部</Link>
-        <Link to="/login">精华</Link>
-        <Link to="/home/share">分享</Link>
-        <Link to="/home/answer">回答</Link>
-        <Link to="/home/job">招聘</Link>
+        <NavLink to="/home/all" activeStyle={{color: '#fff'}} style={NavLinkStyle}>全部</NavLink>
+        <NavLink to="/login" style={NavLinkStyle}>精华</NavLink>
+        <NavLink to="/home/share" style={NavLinkStyle}>分享</NavLink>
+        <NavLink to="/home/answer" style={NavLinkStyle}>回答</NavLink>
+        <NavLink to="/home/job" style={NavLinkStyle}>招聘</NavLink>
       </Nav>
     );
   }

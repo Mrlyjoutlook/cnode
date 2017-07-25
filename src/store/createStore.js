@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import makeRootReducer from './reducers';
 import appState from '../modules/appReduer';
+import listInfo from '../routes/home/modules/listInfoReduer';
 
 export default (initialState = {}) => {
   // create saga middleware
@@ -25,7 +26,7 @@ export default (initialState = {}) => {
 
   // Store Instantiation and HMR Setup
   const store = createStore(
-    makeRootReducer({ appState }),
+    makeRootReducer({ appState, listInfo }),
     initialState,
     composeEnhancers(
       applyMiddleware(...middleware),
@@ -33,7 +34,7 @@ export default (initialState = {}) => {
     ),
   );
 
-  store.asyncReducers = { appState };
+  store.asyncReducers = { appState, listInfo };
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
