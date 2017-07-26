@@ -4,11 +4,11 @@ const fontSize = (n1, n2, n3) => css`
   & {
     font-size: ${n1}px;
   }
-  [data-dpr="2"] & { 
-    font-size: ${n2}px; 
+  [data-dpr="2"] & {
+    font-size: ${n2}px;
   }
-  [data-dpr="3"] & { 
-    font-size: ${n3}px; 
+  [data-dpr="3"] & {
+    font-size: ${n3}px;
   }
 `;
 
@@ -59,7 +59,7 @@ export const ListContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  padding: .3rem .5rem;
+  padding: .14rem .5rem;
   background: #fff;
   border-radius: .25rem;
 `;
@@ -94,7 +94,7 @@ export const CardTitle = styled.div`
   overflow: hidden;
   font-weight: bold;
   text-align: center;
-  padding: .14rem 0;
+  padding: .4rem 0;
 `.extend`${fontSize(18, 36, 54)}`;
 
 export const CardBottom = styled.div`

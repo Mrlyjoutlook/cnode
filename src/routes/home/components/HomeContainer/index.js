@@ -23,7 +23,7 @@ class HomeContainer extends Component {
   }
 
   onRefresh = () => {
-    
+
   }
 
   render() {
@@ -33,7 +33,7 @@ class HomeContainer extends Component {
         <Navigation />
         <div className="wrap" id="wrap">
           <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
-          <ListContainer >
+          <ListContainer>
             {
               listData.map((item, i) => <ListItem key={i} dataSource={item} />)
             }
