@@ -2,7 +2,12 @@ import { fromJS, Map } from 'immutable';
 import * as actions from './appActions';
 
 const initialState = fromJS({
-  oldLocation: {},
+  oldLocation: {
+    pathname: '',
+    search: '',
+    hash: '',
+    state: undefined,
+  },
 });
 
 export default function (state = initialState, action) {

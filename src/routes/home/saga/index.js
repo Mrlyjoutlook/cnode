@@ -1,22 +1,30 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { GET_LIST, GET_LIST_OK, GET_LIST_FAIL } from '../modules/listInfoActions';
+import { put, select, takeLatest } from 'redux-saga/effects';
+import { GET_LIST, REQUEST_LIST_OK, REQUEST_LIST_FAIL } from '../modules/listInfoActions';
 import { getList } from '../modules/listInfoActions';
 
-function watchGetList(action) {
-  try {
-    const user = yield call(Api.fetchUser, action.payload.userId);
-    yield put({type: GET_LIST_OK, user: user});
-  } catch (e) {
-    yield put({type: GET_LIST_FAIL, message: e.message});
+function* watchGetList(action) {
+  const listInfo = yield select(state => state.listInfo);
+  if (listInfo.get('listData').size === 0) {
+    try {
+      const { success, data } = yield put.resolve(getList());
+      if (success) {
+        yield put({ type: REQUEST_LIST_OK, data });
+      } else {
+        yield put({ type: REQUEST_LIST_FAIL, data });
+      }
+    } catch (e) {
+      yield put({ type: REQUEST_LIST_FAIL, message: e.message });
+    }
   }
 }
 
 export default function* homeTask() {
-  try {
-    while (true) {
-      yield takeLatest(GET_LIST, watchGetList);
-    }
-  } finally {
-    console.log('watchIncrementAsync terminated');
-  }
+  yield takeLatest(GET_LIST, watchGetList);
+  // try {
+  //   while (true) {
+  //     yield take(GET_LIST, watchGetList);
+  //   }
+  // } finally {
+  //   console.log('watchIncrementAsync terminated');
+  // }
 };

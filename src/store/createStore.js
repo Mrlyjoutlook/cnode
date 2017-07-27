@@ -1,17 +1,24 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
+import createHashHistory from 'history/createHashHistory';
 import requestMiddleware from './requestMiddleware';
 import makeRootReducer from './reducers';
 import appState from '../modules/appReduer';
 import listInfo from '../routes/home/modules/listInfoReduer';
+import loginState from '../routes/login/modules/loginReduer';
 
 export default (initialState = {}) => {
   // create saga middleware
   const sagaMiddleware = createSagaMiddleware();
 
+  // create router middleware
+  const history = createHashHistory();
+  const router = routerMiddleware(history);
+
   // Middleware Configuration
-  const middleware = [thunk, requestMiddleware, sagaMiddleware];
+  const middleware = [router, thunk, requestMiddleware, sagaMiddleware];
 
   // Store Enhancers
   const enhancers = [];
@@ -27,7 +34,7 @@ export default (initialState = {}) => {
 
   // Store Instantiation and HMR Setup
   const store = createStore(
-    makeRootReducer({ appState, listInfo }),
+    makeRootReducer({ router: routerReducer, appState, listInfo, loginState }),
     initialState,
     composeEnhancers(
       applyMiddleware(...middleware),
@@ -35,7 +42,7 @@ export default (initialState = {}) => {
     ),
   );
 
-  store.asyncReducers = { appState, listInfo };
+  store.asyncReducers = { appState, listInfo, loginState };
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
@@ -45,6 +52,7 @@ export default (initialState = {}) => {
   }
 
   return {
+    history,
     store,
     runSaga: sagaMiddleware.run,
   };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { adminRoute, loginRoute } from '../../config/routesConfig';
 import LoginRoute from '../../routes/login';
@@ -20,16 +21,22 @@ class App extends Component {
     store: object.isRequired,
   }
 
+  componentWillMount() {
+    const { dispatch } = this.props.store;
+    // 检查是否登录
+    dispatch({ type: 'CHECK_TOKEN' });
+  }
+
   shouldComponentUpdate() {
     return false;
   }
 
   render() {
-    const { store } = this.props;
+    const { store, history } = this.props;
     const { getState } = store;
     return (
       <Provider store={store}>
-        <Router>
+        <ConnectedRouter history={history}>
           <Route
             render={({ location }) => {
               const direction = getState().appState.getIn(['oldLocation', 'pathname']) === location.pathname ? '-x' : 'x';
@@ -37,9 +44,9 @@ class App extends Component {
                 <PageTransition direction={direction}>
                   <div key={location.pathname}>
                     <Switch location={location} >
-                      <HomeRoute exact path="/" store={store} />
-                      <LoginRoute path={loginRoute.path} store={store} />
-                      <AdminRoute path={adminRoute.path} store={store} />
+                      <HomeRoute path="/home/all" store={store} location={location} />
+                      <LoginRoute path={loginRoute.path} store={store} location={location} />
+                      <AdminRoute path={adminRoute.path} store={store} location={location} />
                       <NotFoundRoute />
                     </Switch>
                   </div>
@@ -47,7 +54,7 @@ class App extends Component {
               );
             }}
           />
-        </Router>
+        </ConnectedRouter>
       </Provider>
     );
   }

@@ -1,5 +1,5 @@
-# Create-React/redux
-a react redux boilerplates!
+# Cnode/React
+*A mobile client web application for the CNode community!*
 
 # Use
 
@@ -20,28 +20,15 @@ npm run mock / yarn add mock
 
 # Features
 - React
-- React-Router 4
+- React-Router 4.x
+- React-Router-Redux
 - Redux
 - Redux-Saga
+- Style-Components
+- Axios
+- Immutable
 - Webpack 3.x
 - babel
 - eslint
 
-# babel
-配置说明
-
-## presets
-- es2015 `{"modules": false}` webpack2.x以上需关闭es2015 modules配置
-- stage-0
-- react
-
-## plugins
-- transform-runtime 语法转义
-- transform-react-remove-prop-types 去除生产环境`react propTypes`代码.
-
-# eslint
-配置说明
-
-## extends
-继承使用的是airbnb config
 

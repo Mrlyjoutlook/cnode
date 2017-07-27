@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { LoginPage, Button } from '../../../../components/Element';
+import { connect } from 'react-redux';
+import { LoginPage, Button, Input } from '../../../../components/Element';
+import Navigation from '../../../../components/Navigation';
+import { LOGIN_IN } from '../../modules/loginActions';
 
 class LoginContainer extends Component {
   static propTypes = {
@@ -9,13 +12,16 @@ class LoginContainer extends Component {
     history: object.isRequired,
   }
 
+  componentWillMount() {
+  }
+
   shouldComponentUpdate() {
     return false;
   }
 
   handleOnClick = () => {
-    const { history } = this.props;
-    history.push('/');
+    const { dispatch } = this.props;
+    dispatch({ type: LOGIN_IN, accesstoken: '3d926f56-bcee-4333-a18c-736a77638f49' });
   }
 
   handleGoBack = () => {
@@ -25,11 +31,12 @@ class LoginContainer extends Component {
   render() {
     return (
       <LoginPage>
-        <Button data-flex="main:center cross:center" onClick={this.handleGoBack}>goBack</Button>
-        <Button data-flex="main:center cross:center" onClick={this.handleOnClick}>login</Button>
+        <Navigation title="登录" />
+        <Input placeholder="请输入Access Token" />
+        <Button data-flex="main:center cross:center" onClick={this.handleOnClick}>login in</Button>
       </LoginPage>
     );
   }
 }
 
-export default LoginContainer;
+export default connect()(LoginContainer);

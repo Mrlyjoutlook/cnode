@@ -16,7 +16,12 @@ class ListItem extends Component {
 
   handleOnClick = () => {
     const { history } = this.props;
-    history.push('/');
+    history.push({
+      pathname: '/login',
+      state: {
+        top: ''
+      }
+    });
   }
 
   render() {
@@ -31,9 +36,9 @@ class ListItem extends Component {
           <CardTitle>{dataSource.get('title')}</CardTitle>
         </CardTop>
         <CardBottom>
-          <CardAvatar src={dataSource.getIn(['author', 'avatar_url'])} />
+          <CardAvatar src={dataSource.get('author').avatar_url} />
           <div style={{ display: 'inline-block' }}>
-            <CardName>{dataSource.getIn(['author', 'loginname'])}</CardName>
+            <CardName>{dataSource.get('author').loginname}</CardName>
             <CardTime>{dataSource.get('last_reply_at')}</CardTime>
           </div>
           <CardPop>{`${dataSource.getIn(['reply_count'])}/${dataSource.getIn(['visit_count'])}`}</CardPop>

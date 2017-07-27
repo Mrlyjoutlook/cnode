@@ -1,37 +1,40 @@
 import axios from 'axios';
 
 export default ({ dispatch, getState }) => (next) => (action) => {
-  const { types = '', url, method = 'get', headers, params = {}, paramsEnd = {} } = action;
+  const { type = '', url, method = 'get', headers, data = {}, params = {}, paramsEnd = {} } = action;
 
   // 普通 action：传递
-  if (!url || url == undefined){
+  if (!url || url === undefined) {
     return next(action);
   }
 
-  if (!types || types === undefined) {
+  if (!type || type === undefined) {
     return next(action);
   }
 
   function checkStatus(response) {
     const { status, statusText } = response;
-      if (status >= 200 && status < 300) {
-        return response;
-      } else {
-        let error = new Error(statusText);
-        error.response = response;
-        throw error;
-      }
+    if (status >= 200 && status < 300) {
+      return response;
+    } else {
+      let error = new Error(statusText);
+      error.response = response;
+      throw error;
+    }
   }
 
   return axios({
     url,
+    baseURL: 'https://cnodejs.org/api/v1',
     method,
-    responseType: 'stream'
+    params,
+    data,
   })
-  .then(checkStatus())
+  .then(checkStatus)
   .then(
     json => {
-      return types ? dispatch(Object.assign({}, { type, response: json }, { paramsEnd })) : json;
+      return json.data;
+      // return type ? dispatch(Object.assign({}, { type, response: json }, { paramsEnd })) : json;
     },
   );
 };

@@ -6,7 +6,7 @@ import { saveoldLocation } from '../../modules/appActions';
 
 export default function AdminRoute({ store, ...props }) {
   const { dispatch } = store;
-  dispatch(saveoldLocation(location));
+  dispatch(saveoldLocation(props.location));
   return (
     <Route {...props} render={({ match }) => (
       <LazilyLoad

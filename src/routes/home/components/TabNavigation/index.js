@@ -8,7 +8,7 @@ const NavLinkStyle = {
   color: '#ace9f1',
 }
 
-class HomeContainer extends Component {
+class TabNavigation extends Component {
   static propTypes = {
     match: object.isRequired,
     location: object.isRequired,
@@ -21,13 +21,20 @@ class HomeContainer extends Component {
 
   handleOnClick = () => {
     const { history } = this.props;
-    history.push('/');
+    history.push({
+      pathname: '/',
+      state: {
+        state: {
+          top: ''
+        }
+      }
+    });
   }
 
   render() {
     return (
       <Nav data-flex="main:center cross:center">
-        <NavLink to="/home/all" activeStyle={{color: '#fff'}} style={NavLinkStyle}>全部</NavLink>
+        <NavLink to="/me/all" onClick={this.handleOnClick} activeStyle={{color: '#fff'}} style={NavLinkStyle}>全部</NavLink>
         <NavLink to="/login" style={NavLinkStyle}>精华</NavLink>
         <NavLink to="/home/share" style={NavLinkStyle}>分享</NavLink>
         <NavLink to="/home/answer" style={NavLinkStyle}>回答</NavLink>
@@ -37,4 +44,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default withRouter(HomeContainer);
+export default withRouter(TabNavigation);

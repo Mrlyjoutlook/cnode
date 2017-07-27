@@ -3,8 +3,9 @@ import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { HomePage, ListContainer } from '../../../../components/Element';
 import PullRefresh from '../../../../components/PullRefresh';
-import Navigation from '../Navigation';
+import TabNavigation from '../TabNavigation';
 import ListItem from '../ListItem';
+import { GET_LIST, saveScrollTop } from '../../modules/listInfoActions';
 
 class HomeContainer extends Component {
   static propTypes = {
@@ -13,13 +14,24 @@ class HomeContainer extends Component {
     history: object.isRequired,
   }
 
-  shouldComponentUpdate() {
-    return false;
+  componentDidMount() {
+    const { dispatch, scrollTop } = this.props;
+    dispatch({ type: GET_LIST });
+    if (scrollTop !== 0) {
+      this.wrap.scrollTop = scrollTop;
+    }
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(saveScrollTop(this.wrap.scrollTop));
   }
 
   handleOnClick = () => {
     const { history } = this.props;
-    history.push('/');
+    history.push({
+      pathname: '/',
+    });
   }
 
   onRefresh = () => {
@@ -28,10 +40,11 @@ class HomeContainer extends Component {
 
   render() {
     const { listData } = this.props;
+
     return (
       <HomePage>
-        <Navigation />
-        <div className="wrap" id="wrap">
+        <TabNavigation />
+        <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '0.8rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
           <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
           <ListContainer>
             {
@@ -47,6 +60,7 @@ class HomeContainer extends Component {
 function mapStateToProps(state) {
   return {
     listData: state.listInfo.get('listData'),
+    scrollTop: state.listInfo.get('scrollTop'),
   }
 }
 

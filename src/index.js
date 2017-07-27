@@ -11,7 +11,7 @@ if (__DEV__) {
 
 // init state
 const initialState = window.__INITIAL_STATE__;
-const { store, runSaga } = createStore(initialState);
+const { store, history, runSaga } = createStore(initialState);
 
 // run saga
 runSaga(rootSaga);
@@ -20,7 +20,7 @@ runSaga(rootSaga);
 const MOUNT_NODE = document.getElementById('root');
 
 let render = () => {
-  ReactDOM.render(<App store={store} />, MOUNT_NODE);
+  ReactDOM.render(<App store={store} history={history} />, MOUNT_NODE);
 };
 
 // This code is excluded from production bundle

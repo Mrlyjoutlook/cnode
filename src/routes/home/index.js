@@ -5,7 +5,7 @@ import { saveoldLocation } from '../../modules/appActions';
 
 export default function HomeRoute({ store, ...props }) {
   const { dispatch } = store;
-  dispatch(saveoldLocation(location));
+  dispatch(saveoldLocation(props.location));
   return (
     <Route {...props} component={HomeContainer} />
   );

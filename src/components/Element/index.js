@@ -27,7 +27,7 @@ export const HomePage = styled(Page)`
 `;
 
 export const LoginPage = styled(Page)`
-  background: #e8e8e8;
+  background: #00bcd4;
 `;
 
 export const NotFoundPage = styled(Page)`
@@ -36,22 +36,13 @@ export const NotFoundPage = styled(Page)`
 `;
 
 export const Nav = styled.section`
+  position: fixed;
   width: 100%;
   height: 1.28rem;
   justify-content: space-around;
   background: #00bcd4;
   z-index: 1000;
 `.extend`${fontSize(12, 24, 36)}`;
-
-export const Button = styled.div`
-  border: 1px solid #8a8989;
-  border-radius: .3rem;
-  width: 5rem;
-  margin: 0 auto;
-  line-height: 1rem;
-  font-size: 20px;
-  color: #8a8989;
-`;
 
 export const ListContainer = styled.div`
   width: 9.4rem;
@@ -62,6 +53,7 @@ export const Card = styled.div`
   padding: .14rem .5rem;
   background: #fff;
   border-radius: .25rem;
+  margin-bottom: .2rem;
 `;
 
 export const CardTop = styled.div`
@@ -126,3 +118,71 @@ export const CardPop = styled.div`
   font-weight: 400;
   margin: .1rem;
 `.extend`${fontSize(10, 20, 30)}`;
+
+export const InputLabel = styled.div`
+
+`;
+
+export const Input = styled.input`
+  -webkit-appearance: textfield;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 70%;
+  height: 1.2rem;
+  border: 2px solid #fff;
+  border-radius: .2rem;
+  margin-left: 50%;
+  outline: none;
+  transform: translate(-50%, 2rem);
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  position: relative;
+  padding-left: .04rem;
+  box-sizing: border-box;
+  &:focus{
+    border: 2px solid #07d6f1;
+    &::-webkit-input-placeholder{
+      color: #07d6f1;
+    }
+  }
+  &::-webkit-input-placeholder{
+    color: #fff;
+  }
+`.extend`${fontSize(15, 30, 45)}`;
+
+// export const RadioStyle = styled.label`
+//   background-color:#fff;
+//   border:1px solid rgba(0,0,0,0.15);
+//   border-radius:100%;
+//   display:inline-block;
+//   height:16px;
+//   margin-right:10px;
+//   margin-top:-1px;
+//   vertical-align:middle;
+//   width:16px;
+//   line-height:1;
+//   ${Radio}:checked &:after {
+//     background-color:#57ad68;
+//     border-radius:100%;
+//     content:"";
+//     display:inline-block;
+//     height:12px;
+//     margin:2px;
+//     width:12px;
+//   }
+// `;
+
+// export const Radio = styled.div.attrs({
+//   type: 'radio',
+// })`
+//   display:none;
+// `;
+
+export const Button = styled.div`
+  border: 2px solid #fff;
+  border-radius: .2rem;
+  width: 70%;
+  margin-left: 50%;
+  transform: translate(-50%, 2.4rem);
+  height: 1.2rem;
+  color: #fff;
+`.extend`${fontSize(15, 30, 45)}`;
