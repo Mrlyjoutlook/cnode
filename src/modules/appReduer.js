@@ -2,6 +2,7 @@ import { fromJS, Map } from 'immutable';
 import * as actions from './appActions';
 
 const initialState = fromJS({
+  direction: 'x',
   oldLocation: {
     pathname: '',
     search: '',

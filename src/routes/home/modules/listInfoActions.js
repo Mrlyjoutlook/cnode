@@ -6,14 +6,14 @@ export const REQUEST_LIST_OK = 'REQUEST_LIST_OK';
 export const REQUEST_LIST_FAIL = 'REQUEST_LIST_FAIL';
 export const SVAE_SCROLLTOP = 'SVAE_SCROLLTOP';
 
-export const getList = () => (dispatch) => {
+export const getList = (type = 'all') => (dispatch) => {
   return dispatch({
     type: REQUEST_LIST,
     url: api.getTopics,
     method: 'get',
     params: {
       page: 1,
-      tab: 'all',
+      tab: type,
       limit: 10,
     },
   });

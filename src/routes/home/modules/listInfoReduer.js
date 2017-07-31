@@ -3,7 +3,7 @@ import * as actions from './listInfoActions';
 
 const initialState = fromJS({
   scrollTop: 0,
-  type: 'tab',
+  tab: 'all',
   page: 1,
   limit: 10,
   listData: [],
@@ -13,7 +13,12 @@ const initialState = fromJS({
 export default function (state = initialState, action) {
   switch (action.type) {
     case actions.REQUEST_LIST_OK:
-      return state.update('listData', data => data.push(...action.data.map(item => Map(item))));
+      if (state.get('listData').size === 0) {
+        return state.update('listData', data => data.push(...action.data.map(item => Map(item))));
+      }
+      if (action.tab !== state.get('tab')) {
+        return state.set('listData', [...action.data.map(item => Map(item))]);
+      }
     case actions.SVAE_SCROLLTOP:
       return state.set('scrollTop', action.h);
     default:

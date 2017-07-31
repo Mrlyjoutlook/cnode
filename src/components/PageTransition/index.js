@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { element, string } from 'prop-types';
+import { element, string, bool } from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import './index.css';
 
@@ -7,6 +7,7 @@ class PageTransition extends Component {
   static propTypes = {
     children: element.isRequired,
     direction: string.isRequired,
+    animation: bool.isRequired,
   }
 
   static defaultProps = {
@@ -27,13 +28,13 @@ class PageTransition extends Component {
   }
 
   render() {
-    const { children, direction } = this.props;
+    const { children, direction, animation } = this.props;
 
     return (
       <CSSTransitionGroup
         transitionName={this.getDirection(direction)}
-        transitionEnter={true}
-        transitionLeave={true}
+        transitionEnter={animation}
+        transitionLeave={animation}
         transitionEnterTimeout={400}
         transitionLeaveTimeout={400}
       >

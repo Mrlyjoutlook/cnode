@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { NavLink, withRouter } from 'react-router-dom';
 import { Nav } from '../../../../components/Element';
 
@@ -13,6 +13,7 @@ class TabNavigation extends Component {
     match: object.isRequired,
     location: object.isRequired,
     history: object.isRequired,
+    itemClick: func.isRequired,
   }
 
   shouldComponentUpdate() {
@@ -32,13 +33,14 @@ class TabNavigation extends Component {
   }
 
   render() {
+    const { itemClick } = this.props;
     return (
       <Nav data-flex="main:center cross:center">
-        <NavLink to="/me/all" onClick={this.handleOnClick} activeStyle={{color: '#fff'}} style={NavLinkStyle}>全部</NavLink>
-        <NavLink to="/login" style={NavLinkStyle}>精华</NavLink>
-        <NavLink to="/home/share" style={NavLinkStyle}>分享</NavLink>
-        <NavLink to="/home/answer" style={NavLinkStyle}>回答</NavLink>
-        <NavLink to="/home/job" style={NavLinkStyle}>招聘</NavLink>
+        <NavLink to="/home/all" onClick={itemClick('all')} activeStyle={{ color: '#fff' }} style={NavLinkStyle}>全部</NavLink>
+        <NavLink to="/home/good" onClick={itemClick('good')} style={NavLinkStyle}>精华</NavLink>
+        <NavLink to="/home/share" onClick={itemClick('share')} style={NavLinkStyle}>分享</NavLink>
+        <NavLink to="/home/answer" onClick={itemClick('answer')} style={NavLinkStyle}>回答</NavLink>
+        <NavLink to="/home/job" onClick={itemClick('job')} style={NavLinkStyle}>招聘</NavLink>
       </Nav>
     );
   }

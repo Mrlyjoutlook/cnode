@@ -4,11 +4,12 @@ import { getList } from '../modules/listInfoActions';
 
 function* watchGetList(action) {
   const listInfo = yield select(state => state.listInfo);
-  if (listInfo.get('listData').size === 0) {
+  const type = action.data;
+  if (listInfo.get('listData').size === 0 || type !== listInfo.get('tab')) {
     try {
-      const { success, data } = yield put.resolve(getList());
+      const { success, data } = yield put.resolve(getList(type));
       if (success) {
-        yield put({ type: REQUEST_LIST_OK, data });
+        yield put({ type: REQUEST_LIST_OK, data, tab: type });
       } else {
         yield put({ type: REQUEST_LIST_FAIL, data });
       }
@@ -20,11 +21,5 @@ function* watchGetList(action) {
 
 export default function* homeTask() {
   yield takeLatest(GET_LIST, watchGetList);
-  // try {
-  //   while (true) {
-  //     yield take(GET_LIST, watchGetList);
-  //   }
-  // } finally {
-  //   console.log('watchIncrementAsync terminated');
-  // }
 };
+

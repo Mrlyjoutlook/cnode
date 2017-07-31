@@ -1,6 +1,11 @@
 /**
  * route list
  */
+export const homeRoute = {
+  key: 'home',
+  name: '首页',
+  path: '/home',
+};
 
 export const loginRoute = {
   key: 'login',
@@ -27,4 +32,17 @@ export const adminRoute = {
   path: '/admin',
 };
 
-export default { adminRoute, loginRoute, personalRoute };
+export default {
+  login: {
+    paths: ['/login', '/home/all', '/home/good', '/home/share', '/home/answer', '/home/job'],
+    details: loginRoute,
+  },
+  admin: {
+    paths: [],
+    details: adminRoute,
+  },
+  personal: {
+    paths: [],
+    details: personalRoute,
+  },
+};

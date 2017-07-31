@@ -4,7 +4,7 @@ import authTask from '../routes/login/saga';
 
 export default function* rootSaga() {
   yield all([
-    fork(homeTask),
     fork(authTask),
+    fork(homeTask),
   ]);
 }

@@ -6,7 +6,6 @@ import { saveoldLocation } from '../../modules/appActions';
 
 export default function LoginRoute({ store, ...props }) {
   const { dispatch } = store;
-  dispatch(saveoldLocation(props.location));
   return (
     <Route {...props} render={routeProps => (
       <LazilyLoad
@@ -17,6 +16,7 @@ export default function LoginRoute({ store, ...props }) {
         {({ Login }) => {
           // const reducer = require('./modules/loginReduer').default;
           // injectReducer(store, { key: 'login', reducer });
+          // dispatch(saveoldLocation(props.location));
           return <Login {...routeProps} />;
         }}
       </LazilyLoad>

@@ -15,8 +15,10 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, scrollTop } = this.props;
-    dispatch({ type: GET_LIST });
+    const { dispatch, scrollTop, location } = this.props;
+    // 请求列表数据
+    dispatch({ type: GET_LIST, data: location.pathname.split('/')[2] || 'all' });
+    // 回滚列表到指定高度
     if (scrollTop !== 0) {
       this.wrap.scrollTop = scrollTop;
     }
@@ -34,6 +36,12 @@ class HomeContainer extends Component {
     });
   }
 
+  handleTanOnClick = (type) => {
+    return () => {
+      // this.props.dispatch({ type: GET_LIST, data: type });
+    };
+  }
+
   onRefresh = () => {
 
   }
@@ -43,7 +51,7 @@ class HomeContainer extends Component {
 
     return (
       <HomePage>
-        <TabNavigation />
+        <TabNavigation itemClick={this.handleTanOnClick} />
         <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '0.8rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
           <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
           <ListContainer>

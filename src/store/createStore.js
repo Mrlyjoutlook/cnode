@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import createHashHistory from 'history/createHashHistory';
 import requestMiddleware from './requestMiddleware';
+import  oldLocationMiddleware from './oldLocationMiddleware';
 import makeRootReducer from './reducers';
 import appState from '../modules/appReduer';
 import listInfo from '../routes/home/modules/listInfoReduer';
@@ -18,7 +19,7 @@ export default (initialState = {}) => {
   const router = routerMiddleware(history);
 
   // Middleware Configuration
-  const middleware = [router, thunk, requestMiddleware, sagaMiddleware];
+  const middleware = [thunk, requestMiddleware, sagaMiddleware, router, oldLocationMiddleware];
 
   // Store Enhancers
   const enhancers = [];
