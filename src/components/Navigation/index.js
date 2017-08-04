@@ -32,12 +32,12 @@ class Navigation extends Component {
   }
 
   render() {
-    const { title, leftContent, rightContent } = this.props;
+    const { title, leftContent, rightContent, style } = this.props;
 
     const svg = <svg viewBox="0 0 36 38" id="left" width="100%" height="100%"><path fill="#fff" d="M16.247 21.399L28.48 9.166l2.121 2.121-10.118 10.119 10.118 10.118-2.121 2.121-12.233-12.233.007-.006z"></path></svg>
 
     return (
-      <div className="nav" data-flex="main:center cross:center">
+      <div className="nav" data-flex="main:center cross:center" style={style}>
         <div className="nav_left" onClick={this.handleLeftOnClick}>{ leftContent ? leftContent : svg }</div>
         <div className="nav_center">{ title }</div>
         <div className="nav_right">{ rightContent }</div>

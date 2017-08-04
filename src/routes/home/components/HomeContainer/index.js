@@ -29,17 +29,11 @@ class HomeContainer extends Component {
     dispatch(saveScrollTop(this.wrap.scrollTop));
   }
 
-  handleOnClick = () => {
-    const { history } = this.props;
-    history.push({
-      pathname: '/',
-    });
-  }
-
-  handleTanOnClick = (type) => {
+  handleOnClick = (id) => {
     return () => {
-      // this.props.dispatch({ type: GET_LIST, data: type });
-    };
+      const { history } = this.props;
+      history.push(`/topic/${id}`);
+    }
   }
 
   onRefresh = () => {
@@ -48,15 +42,14 @@ class HomeContainer extends Component {
 
   render() {
     const { listData } = this.props;
-
     return (
       <HomePage>
-        <TabNavigation itemClick={this.handleTanOnClick} />
+        <TabNavigation />
         <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '0.8rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
           <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
           <ListContainer>
             {
-              listData.map((item, i) => <ListItem key={i} dataSource={item} />)
+              listData.map((item, i) => <ListItem key={i} dataSource={item} itemClick={this.handleOnClick(item.get('id'))} />)
             }
           </ListContainer>
         </div>

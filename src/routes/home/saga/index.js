@@ -2,9 +2,8 @@ import { put, select, takeLatest } from 'redux-saga/effects';
 import { GET_LIST, REQUEST_LIST_OK, REQUEST_LIST_FAIL } from '../modules/listInfoActions';
 import { getList } from '../modules/listInfoActions';
 
-function* watchGetList(action) {
+function* watchGetList({data: {type}}) {
   const listInfo = yield select(state => state.listInfo);
-  const type = action.data;
   if (listInfo.get('listData').size === 0 || type !== listInfo.get('tab')) {
     try {
       const { success, data } = yield put.resolve(getList(type));

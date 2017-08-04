@@ -13,6 +13,12 @@ export const loginRoute = {
   path: '/login',
 };
 
+export const topicRoute = {
+  key: 'topic',
+  name: '贴',
+  path: '/topic/:id',
+};
+
 export const personalRoute = {
   key: 'personal',
   name: '个人',

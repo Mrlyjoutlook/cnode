@@ -1,4 +1,4 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS, Map, List } from 'immutable';
 import * as actions from './listInfoActions';
 
 const initialState = fromJS({
@@ -14,10 +14,10 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case actions.REQUEST_LIST_OK:
       if (state.get('listData').size === 0) {
-        return state.update('listData', data => data.push(...action.data.map(item => Map(item))));
+        return state.update('listData', data => data.push(...action.data.map(item => Map(item)))).set('tab', action.tab);
       }
       if (action.tab !== state.get('tab')) {
-        return state.set('listData', [...action.data.map(item => Map(item))]);
+        return state.set('listData', fromJS([...action.data])).set('tab', action.tab);;
       }
     case actions.SVAE_SCROLLTOP:
       return state.set('scrollTop', action.h);

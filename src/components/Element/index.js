@@ -30,6 +30,10 @@ export const LoginPage = styled(Page)`
   background: #00bcd4;
 `;
 
+export const TopicPage = styled(Page)`
+  background: #fff;
+`;
+
 export const NotFoundPage = styled(Page)`
   background: #e8e8e8;
   text-align: center;

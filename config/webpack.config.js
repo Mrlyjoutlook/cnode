@@ -239,12 +239,12 @@ webpackConfig.module.rules.push({
 
 // file loaders
 webpackConfig.module.rules.push(
-  { test: /\.woff(\?.*)?$/, loader: ['url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'] },
-  { test: /\.woff2(\?.*)?$/, loader: ['url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'] },
-  { test: /\.otf(\?.*)?$/, loader: ['file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype'] },
-  { test: /\.ttf(\?.*)?$/, loader: ['url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'] },
-  { test: /\.eot(\?.*)?$/, loader: ['file?prefix=fonts/&name=[path][name].[ext]'] },
-  { test: /\.svg(\?.*)?$/, loader: ['url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'] },
+  { test: /\.woff(\?.*)?$/, loader: ['url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'] },
+  { test: /\.woff2(\?.*)?$/, loader: ['url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'] },
+  { test: /\.otf(\?.*)?$/, loader: ['file-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype'] },
+  { test: /\.ttf(\?.*)?$/, loader: ['url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'] },
+  { test: /\.eot(\?.*)?$/, loader: ['file-loader?prefix=fonts/&name=[path][name].[ext]'] },
+  { test: /\.svg(\?.*)?$/, loader: ['url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'] },
   { test: /\.(png|jpg|gif)$/, use: ['url-loader?limit=8192'] },
   { test: /\.(flv|mp4)$/, use: ['file-loader'] },
 );

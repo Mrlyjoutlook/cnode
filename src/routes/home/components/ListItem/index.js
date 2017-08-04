@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
+import { is } from 'immutable';
 import { Card, CardTop, CardLabel, CardTitle, CardBottom, CardAvatar, CardName, CardTime, CardPop } from '../../../../components/Element';
 import { getCardType } from '../../../../utils/util';
 
 class ListItem extends Component {
   static propTypes = {
-    // match: object.isRequired,
-    // location: object.isRequired,
-    // history: object.isRequired,
+    dataSource: object.isRequired,
+    itemClick: func.isRequired,
   }
 
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate(nextProps) {
+    return !is(nextProps.dataSource, this.props.dataSource);
   }
 
   handleOnClick = () => {
@@ -25,10 +25,10 @@ class ListItem extends Component {
   }
 
   render() {
-    const { dataSource } = this.props;
+    const { dataSource, itemClick } = this.props;
 
     return (
-      <Card>
+      <Card onClick={itemClick}>
         <CardTop>
           { dataSource.get('tab') && <CardLabel >{getCardType(dataSource.get('tab'))}</CardLabel> }
           { dataSource.get('good') && <CardLabel color="red">{getCardType('good')}</CardLabel> }
