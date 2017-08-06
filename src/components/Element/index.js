@@ -1,4 +1,39 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+/**
+|--------------------------------------------------
+| animate
+|--------------------------------------------------
+*/
+
+const fadeInDown = keyframes`
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+`;
+
+const fadeOutUp = keyframes`
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+`;
+
+/**
+|--------------------------------------------------
+| base样式继承
+|--------------------------------------------------
+*/
 
 const fontSize = (n1, n2, n3) => css`
   & {
@@ -11,6 +46,12 @@ const fontSize = (n1, n2, n3) => css`
     font-size: ${n3}px;
   }
 `;
+
+/**
+|--------------------------------------------------
+| 页面层
+|--------------------------------------------------
+*/
 
 const Page = styled.div`
   /*
@@ -127,6 +168,12 @@ export const InputLabel = styled.div`
 
 `;
 
+/**
+|--------------------------------------------------
+| form
+|--------------------------------------------------
+*/
+
 export const Input = styled.input`
   -webkit-appearance: textfield;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -181,6 +228,12 @@ export const Input = styled.input`
 //   display:none;
 // `;
 
+/**
+|--------------------------------------------------
+| 按钮
+|--------------------------------------------------
+*/
+
 export const Button = styled.div`
   border: 2px solid #fff;
   border-radius: .2rem;
@@ -189,4 +242,57 @@ export const Button = styled.div`
   transform: translate(-50%, 2.4rem);
   height: 1.2rem;
   color: #fff;
+`.extend`${fontSize(15, 30, 45)}`;
+
+
+export const Submit = styled.div`
+  border-radius: .2rem;
+  width: 20%;
+  margin-top: .2rem;
+  height: 1rem;
+  line-height: 1rem;
+  olor: #fff;
+  background: #00bcd4;
+  color: #fff;
+`.extend`${fontSize(15, 30, 45)}`;
+
+/**
+|--------------------------------------------------
+| other
+|--------------------------------------------------
+*/
+
+export const Barrier = styled.div`
+  display: ${ props => props.show ? 'block' : 'none'};
+  background: #000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  opacity: .4;
+`;
+
+export const AnimBlok = styled.div`
+  display: ${ props => props.show ? 'block' : 'none'};
+  animation: ${ props => props.show ? fadeInDown : fadeOutUp} 1s linear;
+  position: fixed;
+  top: 1.28rem;
+  background: #fff;
+  z-index: 200;
+  width: 10rem;
+  height: 5.6rem;
+  text-align: center;
+  div:first-child {
+    text-align: left;
+    margin: .2rem .5rem;
+  }
+  textarea{
+    margin: 0;
+    border: 2px solid #ccc;
+    width: 9rem;
+    border-radius: .2rem;
+    height: 3rem;
+    outline: none;
+  }
 `.extend`${fontSize(15, 30, 45)}`;

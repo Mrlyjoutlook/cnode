@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import { object, func } from 'prop-types';
+import { is } from 'immutable';
 import './index.less';
 import praise_fill from '../../../../assets/praise_fill.svg';
 
 class CommentItem extends Component {
   static propTypes = {
     data: object.isRequired,
-    agreeEvent: func.isRequired,
-    commentEvent: func.isRequired,
+    agreeEvent: func,
+    commentEvent: func
   }
 
-  componentWillMount() {
-  }
-
-  componentDidMount() {
-  }
-
-  shouldComponentUpdate() {
-    return true;
+  shouldComponentUpdate(nextProps) {
+    const { data } = nextProps;
+    return !is(data, this.props.data);
   }
 
   handleClickAgree = () => {
@@ -45,8 +41,8 @@ class CommentItem extends Component {
           <div className="commentItem_right_mid" dangerouslySetInnerHTML={{__html: data.get('content')}} />
           <div className="commentItem_right_bot">
             <span onClick={this.handleClickComment}>回复</span>
-            <span onClick={this.handleClickAgree}><img src={praise_fill} alt=""/></span>
-            <span>1</span>
+            <span onClick={this.handleClickAgree}><img src={praise_fill} alt="" /></span>
+            <span>{data.get('ups').size}</span>
           </div>
         </div>
       </div>

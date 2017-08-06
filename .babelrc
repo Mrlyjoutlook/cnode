@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
+      "styled-components",
       ["transform-runtime", {
         "helpers": false,
         "polyfill": false,

@@ -1,7 +1,7 @@
 import * as actions from '../modules/loginActions';
 
 const initialState = {
-  status: false,
+  status: true,
   accesstoken: '',
   userInfo: {},
 };

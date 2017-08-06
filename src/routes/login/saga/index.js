@@ -16,16 +16,13 @@ function* authorize(accesstoken) {
     }
 }
 
-function* checkToken() {
-  const loginState = yield select(state => state.loginState);
-  if (!loginState.status) {
-    yield put(push('/login'));
-  }
-}
-
 export default function* authTask() {
   while (true) {
-    yield take(CHECK_TOKEN, checkToken);
+    // yield take(CHECK_TOKEN);
+    // const loginInfo = yield select(state => state.loginState);
+    // if (!loginInfo.state) {
+    //   yield put(push('/login'));
+    // }
     const { accesstoken } = yield take(LOGIN_IN);
     yield fork(authorize, accesstoken);
     yield take([LOIGN_OUT, REQUEST_ACCESSTOKEN_FAIL]);

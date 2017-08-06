@@ -1,43 +1,32 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
+import { is } from 'immutable';
 import CommentItem from '../CommentItem';
 
 class Comment extends Component {
   static propTypes = {
-    match: object.isRequired,
-    location: object.isRequired,
-    history: object.isRequired,
+    dataSource: object.isRequired,
+    handleClickAgree: func,
+    handleClickComment: func,
   }
 
-  componentWillMount() {
-  }
-
-  componentDidMount() {
-  }
-
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  handleClickAgree = () => {
-
-  }
-
-  handleClickComment = () => {
-
+  shouldComponentUpdate(nextProps) {
+    const { dataSource, handleClickAgree, handleClickComment } = nextProps;
+    return !is(dataSource, this.props.dataSource);
   }
 
   render() {
-    const { dataSource } = this.props;
+    const { mapSource, dataSource, handleClickAgree, handleClickComment } = this.props;
     return (
-      <div style={{background: '#fff', padding: '.2rem .4rem', borderTop: '.5rem solid #f5f4f4',}}>
+      <div style={{ background: '#fff', padding: '.2rem .4rem', borderTop: '.5rem solid #f5f4f4' }}>
         {
-          dataSource.map(
+          mapSource.map(
             (item, i) =>
               <CommentItem
-                data={item}
-                agreeEvent={this.handleClickAgree}
-                commentEvent={this.handleClickComment}
+                key={i}
+                data={dataSource.get(item)}
+                agreeEvent={handleClickAgree(item, i)}
+                commentEvent={handleClickComment}
               />
           )
         }
