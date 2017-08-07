@@ -43,6 +43,8 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <Route
             render={({ location, history }) => {
+              console.log(location.pathname)
+              console.log(getState().appState.getIn(['oldLocation', 'pathname']))
               const animation = true//location.pathname.indexOf('home') //location.pathname.indexOf(getState().appState.getIn(['oldLocation', 'pathname']).split('/')[1]) === -1;
               const direction = history.action === 'POP' ? '-x' : 'x';
               return (
