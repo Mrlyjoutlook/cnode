@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import createHashHistory from 'history/createHashHistory';
 import requestMiddleware from './requestMiddleware';
-import  oldLocationMiddleware from './oldLocationMiddleware';
+import { memoryReducer } from '../components/Memory';
 import makeRootReducer from './reducers';
 import appState from '../modules/appReduer';
 import listInfo from '../routes/home/modules/listInfoReduer';
@@ -19,7 +19,7 @@ export default (initialState = {}) => {
   const router = routerMiddleware(history);
 
   // Middleware Configuration
-  const middleware = [thunk, requestMiddleware, sagaMiddleware, router, oldLocationMiddleware];
+  const middleware = [thunk, requestMiddleware, sagaMiddleware, router];
 
   // Store Enhancers
   const enhancers = [];
@@ -35,7 +35,7 @@ export default (initialState = {}) => {
 
   // Store Instantiation and HMR Setup
   const store = createStore(
-    makeRootReducer({ router: routerReducer, appState, listInfo, loginState }),
+    makeRootReducer({ router: routerReducer, memoryHistory: memoryReducer, appState, listInfo, loginState }),
     initialState,
     composeEnhancers(
       applyMiddleware(...middleware),

@@ -11,11 +11,10 @@ import AdminRoute from '../../routes/admin';
 import NotFoundRoute from '../../routes/notFound';
 import PageTransition from '../../components/PageTransition';
 import '../../styles/index.css';
-import { saveoldLocation } from '../../modules/appActions';
+
 require('normalize.css');
 require('flex.css/dist/data-flex.css');
 require('lib-flexible');
-import Routes from '../../config/routesConfig';
 
 class App extends Component {
   static propTypes = {
@@ -35,6 +34,13 @@ class App extends Component {
     return false;
   }
 
+  oldHistory = {
+    pathname: '',
+    hash: '',
+    search: '',
+    state: undefined,
+  }
+
   render() {
     const { store, history } = this.props;
     const { getState } = store;
@@ -43,18 +49,17 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <Route
             render={({ location, history }) => {
-              console.log(location.pathname)
-              console.log(getState().appState.getIn(['oldLocation', 'pathname']))
-              const animation = true//location.pathname.indexOf('home') //location.pathname.indexOf(getState().appState.getIn(['oldLocation', 'pathname']).split('/')[1]) === -1;
+              const animation = location.pathname.split('/')[1] !== this.oldHistory.pathname.split('/')[1];
               const direction = history.action === 'POP' ? '-x' : 'x';
+              this.oldHistory = location;
               return (
                 <PageTransition direction={direction} animation={animation}>
                   <div key={location.pathname}>
-                    <Switch location={location} >
-                      <HomeRoute path={homeRoute.path} store={store} location={location} />
-                      <LoginRoute path={loginRoute.path} store={store} location={location} />
-                      <TopicRoute path={topicRoute.path} store={store} location={location} />
-                      <AdminRoute path={adminRoute.path} store={store} location={location} />
+                    <Switch location={location}>
+                      <HomeRoute path={homeRoute.path} store={store} />
+                      <LoginRoute path={loginRoute.path} store={store} />
+                      <TopicRoute path={topicRoute.path} store={store} />
+                      <AdminRoute path={adminRoute.path} store={store} />
                       <NotFoundRoute />
                     </Switch>
                   </div>

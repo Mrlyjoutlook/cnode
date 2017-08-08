@@ -1,14 +1,15 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
-import { GET_LIST, REQUEST_LIST_OK, REQUEST_LIST_FAIL } from '../modules/listInfoActions';
+import { GET_LIST, REQUEST_LIST_LOAD, REQUEST_LIST_OK, REQUEST_LIST_FAIL } from '../modules/listInfoActions';
 import { getList } from '../modules/listInfoActions';
 
-function* watchGetList({data: {type}}) {
+function* watchGetList({ tab }) {
   const listInfo = yield select(state => state.listInfo);
-  if (listInfo.get('listData').size === 0 || type !== listInfo.get('tab')) {
+  if (listInfo.get('listData').size === 0 || tab !== listInfo.get('tab')) {
     try {
-      const { success, data } = yield put.resolve(getList(type));
+      const { success, data } = yield put.resolve(getList(tab));
       if (success) {
-        yield put({ type: REQUEST_LIST_OK, data, tab: type });
+        yield put({ type: REQUEST_LIST_LOAD });
+        yield put({ type: REQUEST_LIST_OK, data, tab });
       } else {
         yield put({ type: REQUEST_LIST_FAIL, data });
       }

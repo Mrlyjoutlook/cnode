@@ -1,15 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import HomeContainer from './components/HomeContainer';
-import { saveoldLocation } from '../../modules/appActions';
+import { memoryHistory } from '../../components/Memory';
 
 export default function HomeRoute({ store, ...props }) {
   const { dispatch } = store;
   return (
     <Route
       {...props} render={(routeProps) => {
-        // dispatch(saveoldLocation(routeProps.location));
-        return <HomeContainer {...routeProps} />;
+        return memoryHistory(<HomeContainer {...routeProps} />)({ location: routeProps.location });
       }}
     />
   );

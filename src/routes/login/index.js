@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import LazilyLoad, { importLazy } from 'lazilyload';
 // import { injectReducer } from '../../store/reducers';
-import { saveoldLocation } from '../../modules/appActions';
+import { memoryHistory } from '../../components/Memory';
 
 export default function LoginRoute({ store, ...props }) {
   const { dispatch } = store;
@@ -16,8 +16,7 @@ export default function LoginRoute({ store, ...props }) {
         {({ Login }) => {
           // const reducer = require('./modules/loginReduer').default;
           // injectReducer(store, { key: 'login', reducer });
-          // dispatch(saveoldLocation(props.location));
-          return <Login {...routeProps} />;
+          return memoryHistory(<Login {...routeProps} />)({ location: routeProps.location });
         }}
       </LazilyLoad>
       )}
