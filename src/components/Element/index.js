@@ -80,15 +80,6 @@ export const NotFoundPage = styled(Page)`
   text-align: center;
 `;
 
-export const Nav = styled.section`
-  position: fixed;
-  width: 100%;
-  height: 1.28rem;
-  justify-content: space-around;
-  background: #00bcd4;
-  z-index: 1000;
-`.extend`${fontSize(12, 24, 36)}`;
-
 export const ListContainer = styled.div`
   width: 9.4rem;
   margin: 0 auto;
@@ -230,7 +221,7 @@ export const Input = styled.input`
 
 /**
 |--------------------------------------------------
-| 按钮
+| button
 |--------------------------------------------------
 */
 
@@ -244,7 +235,6 @@ export const Button = styled.div`
   color: #fff;
 `.extend`${fontSize(15, 30, 45)}`;
 
-
 export const Submit = styled.div`
   border-radius: .2rem;
   width: 20%;
@@ -255,6 +245,25 @@ export const Submit = styled.div`
   background: #00bcd4;
   color: #fff;
 `.extend`${fontSize(15, 30, 45)}`;
+
+export const Collect = styled.div`
+  margin-right: .5rem;
+`;
+
+/**
+|--------------------------------------------------
+| navigation
+|--------------------------------------------------
+*/
+
+export const Nav = styled.section`
+  position: fixed;
+  width: 100%;
+  height: 1.28rem;
+  justify-content: space-around;
+  background: #00bcd4;
+  z-index: 1000;
+`.extend`${fontSize(12, 24, 36)}`;
 
 /**
 |--------------------------------------------------

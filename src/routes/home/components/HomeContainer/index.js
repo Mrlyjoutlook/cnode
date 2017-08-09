@@ -3,6 +3,7 @@ import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { HomePage, ListContainer } from '../../../../components/Element';
 import PullRefresh from '../../../../components/PullRefresh';
+import Navigation from '../Navigation';
 import TabNavigation from '../TabNavigation';
 import ListItem from '../ListItem';
 import Load from '../Load';
@@ -45,11 +46,12 @@ class HomeContainer extends Component {
     const { listData, loading } = this.props;
     return (
       <HomePage>
+        <Navigation />
         <TabNavigation />
         { loading && (<Load />) }
         {
           !loading && (
-            <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '0.8rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
+            <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '1rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
               <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
               <ListContainer>
                 {

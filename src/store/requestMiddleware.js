@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default ({ dispatch, getState }) => (next) => (action) => {
-  const { type = '', url, method = 'get', headers, data = {}, params = {}, paramsEnd = {} } = action;
+  const { type = '', url, method = 'get', headers, data = {}, params = {} } = action;
 
   // 普通 action：传递
   if (!url || url === undefined) {
@@ -34,7 +34,7 @@ export default ({ dispatch, getState }) => (next) => (action) => {
   .then(
     json => {
       return json.data;
-      // return type ? dispatch(Object.assign({}, { type, response: json }, { paramsEnd })) : json;
+      // return Object.assign({}, { type }, json);
     },
   );
 };

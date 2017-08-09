@@ -1,4 +1,4 @@
-import * as actions from '../modules/loginActions';
+import { REQUEST_ACCESSTOKEN } from '../modules/loginActions';
 
 const initialState = {
   status: true,
@@ -8,9 +8,9 @@ const initialState = {
 
 export default function loginReduer(state = initialState, action) {
   switch (action.type) {
-    case actions.REQUEST_ACCESSTOKEN_OK:
+    case `${REQUEST_ACCESSTOKEN}_OK`:
       return Object.assign({}, state, { status: true, accesstoken: action.accesstoken });
-    case actions.REQUEST_ACCESSTOKEN_FAIL:
+    case `${REQUEST_ACCESSTOKEN}_FAIL`:
       return initialState;
     default:
       return state;

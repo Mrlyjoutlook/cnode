@@ -1,5 +1,5 @@
 import { fromJS, Map, List } from 'immutable';
-import * as actions from './listInfoActions';
+import { SVAE_SCROLLTOP, REQUEST_LIST } from './listInfoActions';
 
 const initialState = fromJS({
   loading: false,
@@ -13,9 +13,9 @@ const initialState = fromJS({
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case actions.REQUEST_LIST_LOAD:
+    case `${REQUEST_LIST}_LOAD`:
       return state.set('loading', true);
-    case actions.REQUEST_LIST_OK:
+    case `${REQUEST_LIST}_OK`:
       if (state.get('listData').size === 0) {
         return state.update('listData', data => data.push(...action.data.map(item => Map(item)))).set('tab', action.tab).set('loading', false);;
       }
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
         return state.set('listData', fromJS([...action.data])).set('tab', action.tab).set('loading', false);
       }
       break;
-    case actions.SVAE_SCROLLTOP:
+    case SVAE_SCROLLTOP:
       return state.set('scrollTop', action.h);
     default:
       return state;

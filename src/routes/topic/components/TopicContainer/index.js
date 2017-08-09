@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { connect } from 'react-redux';
-import { TopicPage } from '../../../../components/Element';
+import { TopicPage, Collect } from '../../../../components/Element';
+import AuthorInfo from '../AuthorInfo';
 import Content from '../Content';
 import Comment from '../Comment';
 import CommentBlock from '../CommentBlock';
 import Navigation from '../../../../components/Navigation';
-import { GET_TOPIC, GIVE_AGREE } from '../../modules/topicActions';
+import { GET_TOPIC, GIVE_AGREE, DELCOLLECT_TOPIC, COLLECT_TOPIC } from '../../modules/topicActions';
 
 class TopicContainer extends Component {
 
@@ -47,12 +48,24 @@ class TopicContainer extends Component {
     this.setState({ showComment: true });
   }
 
+  handleNavRight = () => {
+    const { dispatch, info } = this.props;
+    dispatch({ type: info.get('is_collect') ? DELCOLLECT_TOPIC : COLLECT_TOPIC })
+  }
+
   render() {
-    const { content, comment, commentId } = this.props;
+    const { content, comment, commentId, info } = this.props;
     const { showComment } = this.state;
+    const navBtn = (<Collect>{ info.get('is_collect') ? '取消收藏' : '收藏' }</Collect>)
     return (
       <TopicPage>
-        <Navigation title="帖子" style={{ background: '#00bcd4' }} />
+        <Navigation
+          title="帖子"
+          style={{ background: '#00bcd4' }}
+          rightContent={navBtn}
+          onRightClick={this.handleNavRight}
+        />
+        <AuthorInfo info={info} />
         <Content content={content} />
         <Comment
           dataSource={comment}
@@ -71,6 +84,7 @@ class TopicContainer extends Component {
 
 function mapStateToProps(state) {
   return {
+    info: state.topic.get('data'),
     commentId: state.topic.get('commentId'),
     content: state.topic.getIn(['data', 'content']),
     comment: state.topic.get('comment'),
