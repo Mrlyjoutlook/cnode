@@ -102,14 +102,17 @@ export const Card = styled.div`
   padding: .14rem .5rem;
   background: #fff;
   margin-bottom: .2rem;
+  color: #656060;
 `;
 
 export const CardTop = styled.div`
+  padding: .4rem 0;
   &:after{
     content: '';
     width: 100%;
     height: 2px;
     background-color: #ccc;
+    margin-top: .2rem;
     display: block;
     [data-dpr="2"] & {
       transform: scaleY(.5);
@@ -119,25 +122,25 @@ export const CardTop = styled.div`
     }
 `;
 
-export const CardTitle = styled.div`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-weight: bold;
-  text-align: center;
-  padding: .4rem 0;
-`.extend`${fontSize(18, 36, 54)}`;
-
-export const CardBottom = styled.div`
-  padding: .14rem 0 0 0;
-`;
-
 export const CardAvatar = styled.div`
   width: 1rem;
   height: 1rem;
   border-radius: .18rem;
   display: inline-block;
   ${props => `background: url(${props.src})  center center;`}
+`;
+
+export const CardTitle = styled.div`
+  width: 7rem;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: bold;
+`.extend`${fontSize(18, 36, 54)}`;
+
+export const CardBottom = styled.div`
+  padding: .3rem 0;
 `;
 
 export const CardName = styled.div`
@@ -150,10 +153,18 @@ export const CardName = styled.div`
 export const CardTime = styled.div`
   font-weight: 400;
   margin: .1rem;
+  span{
+    vertical-align: super;
+  }
+  img{
+    margin-right: .1rem;
+    width: .4rem;
+  }
 `.extend`${fontSize(10, 20, 30)}`;
 
 export const CardPop = styled.div`
   display: inline-block;
+  vertical-align: bottom;
   font-weight: 400;
   img{
     margin-right: .1rem;

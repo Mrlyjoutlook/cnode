@@ -8,7 +8,6 @@ export const getList = (type = 'all') => (dispatch) => {
   return dispatch({
     type: REQUEST_LIST,
     url: api.getTopics,
-    method: 'get',
     params: {
       page: 1,
       tab: type,

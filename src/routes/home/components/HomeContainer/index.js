@@ -55,7 +55,7 @@ class HomeContainer extends Component {
   render() {
     const { listData, loading } = this.props;
     return (
-      <HomePage>
+      <HomePage innerRef={wrap => this.wrap = wrap}>
         <Navigation
           news={0}
           onClickPeople={this.handleOnClickPeople}
@@ -65,7 +65,7 @@ class HomeContainer extends Component {
         { loading && (<Load />) }
         {
           !loading && (
-            <ListContainer innerRef={wrap => this.wrap = wrap}>
+            <ListContainer>
             <Tloader
               initializing={0}
               onLoadMore={this.onLoadMore}

@@ -123,6 +123,7 @@
     "immutable": "^3.8.1",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.4",
+    "moments": "^0.0.2",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.8",

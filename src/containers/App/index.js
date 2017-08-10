@@ -13,6 +13,7 @@ import NotFoundRoute from '../../routes/notFound';
 import PageTransition from '../../components/PageTransition';
 import '../../styles/index.css';
 
+require('moment').locale('zh-cn');
 require('normalize.css');
 require('flex.css/dist/data-flex.css');
 require('lib-flexible');

@@ -3,10 +3,10 @@ import { GET_LIST, REQUEST_LIST } from '../modules/listInfoActions';
 import { getList } from '../modules/listInfoActions';
 
 function* watchGetList({ tab }) {
-  yield put({ type: `${REQUEST_LIST}_LOAD` });
   const listInfo = yield select(state => state.listInfo);
   if (listInfo.get('listData').size === 0 || tab !== listInfo.get('tab')) {
     try {
+      yield put({ type: `${REQUEST_LIST}_LOAD` });
       const { success, data } = yield put.resolve(getList(tab));
       if (success) {
         yield put({ type: `${REQUEST_LIST}_OK`, data, tab });
