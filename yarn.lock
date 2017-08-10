@@ -5099,6 +5099,13 @@ react-router@^4.1.1:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
+react-scroll@^1.5.4:
+  version "1.5.4"
+  resolved "http://r.cnpmjs.org/react-scroll/download/react-scroll-1.5.4.tgz#8c5c4ced659553be1fa39959776c85055fceb137"
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.5.8"
+
 react-transition-group@^1.2.0:
   version "1.2.0"
   resolved "http://r.cnpmjs.org/react-transition-group/download/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"

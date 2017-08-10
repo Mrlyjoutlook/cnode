@@ -3,10 +3,11 @@ import { object } from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
-import { homeRoute, adminRoute, loginRoute, topicRoute } from '../../config/routesConfig';
+import { homeRoute, adminRoute, loginRoute, topicRoute, myInfoRoute } from '../../config/routesConfig';
 import LoginRoute from '../../routes/login';
 import HomeRoute from '../../routes/home';
 import TopicRoute from '../../routes/topic';
+import MyInfoRoute from '../../routes/myInfo';
 import AdminRoute from '../../routes/admin';
 import NotFoundRoute from '../../routes/notFound';
 import PageTransition from '../../components/PageTransition';
@@ -59,6 +60,7 @@ class App extends Component {
                       <HomeRoute path={homeRoute.path} store={store} />
                       <LoginRoute path={loginRoute.path} store={store} />
                       <TopicRoute path={topicRoute.path} store={store} />
+                      <MyInfoRoute path={myInfoRoute.path} store={store} />
                       <AdminRoute path={adminRoute.path} store={store} />
                       <NotFoundRoute />
                     </Switch>

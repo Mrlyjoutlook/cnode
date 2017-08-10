@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { element } from 'prop-types';
-import { Page } from '../Common';
-import SceneTransition from '../../../../components/SceneTransition';
+import { MyInfoPage } from '../../../../components/Element';
+import Navigation from '../../../../components/Navigation';
 
 class AdminContainer extends Component {
   static propTypes = {
-    children: element.isRequired,
+    // children: element.isRequired,
   }
 
   render() {
     const { children } = this.props;
 
     return (
-      <SceneTransition>
-        <Page>
-          <h1>aaaaaa</h1>
-        </Page>
-      </SceneTransition>
+      <MyInfoPage>
+        <Navigation title="个人中心" style={{ background: '#00bcd4' }} />
+      </MyInfoPage>
     );
   }
 }

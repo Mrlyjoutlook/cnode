@@ -3,6 +3,8 @@ import { object, func } from 'prop-types';
 import { is } from 'immutable';
 import { Card, CardTop, CardLabel, CardTitle, CardBottom, CardAvatar, CardName, CardTime, CardPop } from '../../../../components/Element';
 import { getCardType } from '../../../../utils/util';
+import browse_fill from '../../../../assets/browse_fill.svg';
+import interactive_fill from '../../../../assets/interactive_fill.svg';
 
 class ListItem extends Component {
   static propTypes = {
@@ -41,7 +43,10 @@ class ListItem extends Component {
             <CardName>{dataSource.get('author').loginname}</CardName>
             <CardTime>{dataSource.get('last_reply_at')}</CardTime>
           </div>
-          <CardPop>{`${dataSource.getIn(['reply_count'])}/${dataSource.getIn(['visit_count'])}`}</CardPop>
+          <CardPop>
+            <img src={browse_fill} alt=""/><span>{dataSource.getIn(['visit_count'])}</span>
+            <img src={interactive_fill} alt=""/><span>{dataSource.getIn(['reply_count'])}</span>
+          </CardPop>
         </CardBottom>
       </Card>
     );
@@ -49,3 +54,4 @@ class ListItem extends Component {
 }
 
 export default ListItem;
+//<CardPop>{`${dataSource.getIn(['reply_count'])}/${dataSource.getIn(['visit_count'])}`}</CardPop>

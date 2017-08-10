@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { object, func } from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { Nav } from '../../../../components/Element';
+import { TabNav } from '../../../../components/Element';
 
 class TabNavigation extends Component {
   static propTypes = {
@@ -25,13 +25,13 @@ class TabNavigation extends Component {
     };
 
     return (
-      <Nav data-flex="main:center cross:center">
+      <TabNav data-flex="main:center cross:center">
         <NavLink to="/home/all" {...styleObj}>全部</NavLink>
         <NavLink to="/home/good" {...styleObj}>精华</NavLink>
         <NavLink to="/home/share" {...styleObj}>分享</NavLink>
         <NavLink to="/home/answer" {...styleObj}>回答</NavLink>
         <NavLink to="/home/job" {...styleObj}>招聘</NavLink>
-      </Nav>
+      </TabNav>
     );
   }
 }

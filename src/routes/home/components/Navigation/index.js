@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import { object, func } from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { Nav } from '../../../../components/Element';
+import { number, func } from 'prop-types';
+import { HomeNav, Title, Img, Badge } from '../../../../components/Element';
+import remind from '../../../../assets/remind.svg';
+import people from '../../../../assets/people.svg';
 
 class Navigation extends Component {
   static propTypes = {
-    // match: object.isRequired,
-    // location: object.isRequired,
-    // history: object.isRequired,
+    onClickPeople: func.isRequired,
+    onClickRemind: func.isRequired,
+    news: number,
   }
 
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate(nextProps) {
+    const { onClickPeople, onClickRemind, news } = this.props;
+    return onClickPeople !== this.props.onClickPeople ||
+           onClickRemind !== this.props.onClickRemind ||
+           news !== this.props.news;
   }
 
   render() {
-
-    const styleObj = {
-      activeStyle: { color: '#fff' },
-      style: {
-        textDecoration: 'none',
-        color: '#ace9f1',
-      }
-    };
-
+    const { onClickPeople, onClickRemind, news } = this.props;
     return (
-      <Nav data-flex="main:center cross:center">
-        <div>aaa</div>
-      </Nav>
+      <HomeNav data-flex="main:justify cross:center">
+        <div><Title>Cnode中文社区</Title></div>
+        <div>
+          <Badge>{news}</Badge>
+          <Img src={remind} onClick={onClickRemind} />
+          <Img src={people} onClick={onClickPeople} />
+        </div>
+      </HomeNav>
     );
   }
 }

@@ -4,8 +4,6 @@ import LazilyLoad, { importLazy } from 'lazilyload';
 // import { injectReducer } from '../../store/reducers';
 
 export default function AdminRoute({ store, ...props }) {
-  const { dispatch } = store;
-  dispatch(saveoldLocation(props.location));
   return (
     <Route {...props} render={({ match }) => (
       <LazilyLoad

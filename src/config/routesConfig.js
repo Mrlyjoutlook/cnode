@@ -19,6 +19,12 @@ export const topicRoute = {
   path: '/topic/:id',
 };
 
+export const myInfoRoute = {
+  key: 'myInfo',
+  name: '消息',
+  path: '/myInfo',
+}
+
 export const personalRoute = {
   key: 'personal',
   name: '个人',

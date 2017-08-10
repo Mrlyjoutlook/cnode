@@ -65,6 +65,8 @@ const Page = styled.div`
 
 export const HomePage = styled(Page)`
   background: #e8e8e8;
+  position: fixed;
+  overflow-y: scroll;
 `;
 
 export const LoginPage = styled(Page)`
@@ -80,15 +82,25 @@ export const NotFoundPage = styled(Page)`
   text-align: center;
 `;
 
+export const MyInfoPage = styled(Page)`
+  background: #e8e8e8;
+`;
+
+/**
+|--------------------------------------------------
+| components 组件
+|--------------------------------------------------
+*/
+
 export const ListContainer = styled.div`
-  width: 9.4rem;
-  margin: 0 auto;
+  width: 10rem;
+  position: absolute;
+  margin-top: 2.6rem;
 `;
 
 export const Card = styled.div`
   padding: .14rem .5rem;
   background: #fff;
-  border-radius: .25rem;
   margin-bottom: .2rem;
 `;
 
@@ -107,15 +119,6 @@ export const CardTop = styled.div`
     }
 `;
 
-export const CardLabel = styled.div`
-  display: inline-block;
-  padding: .06rem .2rem;
-  border-radius: .1rem;
-  margin-right: .2rem;
-  color: #fff;
-  ${props => props.color ? css`background: ${props.color};` : 'background: #41a7e2;'}
-`.extend`${fontSize(8, 16, 24)}`;
-
 export const CardTitle = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -130,9 +133,9 @@ export const CardBottom = styled.div`
 `;
 
 export const CardAvatar = styled.div`
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 100px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: .18rem;
   display: inline-block;
   ${props => `background: url(${props.src})  center center;`}
 `;
@@ -152,7 +155,14 @@ export const CardTime = styled.div`
 export const CardPop = styled.div`
   display: inline-block;
   font-weight: 400;
-  margin: .1rem;
+  img{
+    margin-right: .1rem;
+    width: .4rem;
+  }
+  span{
+    margin-right: .1rem;
+    vertical-align: super;
+  }
 `.extend`${fontSize(10, 20, 30)}`;
 
 export const InputLabel = styled.div`
@@ -256,14 +266,69 @@ export const Collect = styled.div`
 |--------------------------------------------------
 */
 
-export const Nav = styled.section`
+const Nav = styled.div`
   position: fixed;
   width: 100%;
-  height: 1.28rem;
-  justify-content: space-around;
   background: #00bcd4;
   z-index: 1000;
+`;
+
+export const TabNav = styled(Nav)`
+  height: 1.2rem;
+  justify-content: space-around;
+  top: 1.2rem;
 `.extend`${fontSize(12, 24, 36)}`;
+
+export const HomeNav = styled(Nav)`
+  height: 1.2rem;
+`;
+
+/**
+|--------------------------------------------------
+| label 标签
+|--------------------------------------------------
+*/
+
+export const CardLabel = styled.div`
+  display: inline-block;
+  padding: .06rem .2rem;
+  border-radius: .1rem;
+  margin-right: .2rem;
+  color: #fff;
+  ${props => props.color ? css`background: ${props.color};` : 'background: #41a7e2;'}
+`.extend`${fontSize(8, 16, 24)}`;
+
+/**
+|--------------------------------------------------
+| font size
+|--------------------------------------------------
+*/
+
+export const Title = styled.span`
+  color: #fff;
+  margin-left: .5rem;
+`.extend`${fontSize(18, 36, 54)}`;
+
+/**
+|--------------------------------------------------
+| Badge 微标签
+|--------------------------------------------------
+*/
+
+export const Badge = styled.div`
+  background: red;
+  display: inline-block;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 1.4;
+  width: .4rem;
+  height: .4rem;
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  margin-left: .4rem;
+`;
 
 /**
 |--------------------------------------------------
@@ -305,3 +370,9 @@ export const AnimBlok = styled.div`
     outline: none;
   }
 `.extend`${fontSize(15, 30, 45)}`;
+
+export const Img = styled.img`
+  width: 1rem;
+  width: .8rem;
+  margin-right: .4rem;
+`;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { HomePage, ListContainer } from '../../../../components/Element';
-import PullRefresh from '../../../../components/PullRefresh';
+import Tloader from '../../../../components/Tloader';
 import Navigation from '../Navigation';
 import TabNavigation from '../TabNavigation';
 import ListItem from '../ListItem';
@@ -38,27 +38,43 @@ class HomeContainer extends Component {
     };
   }
 
-  onRefresh = () => {
+  onLoadMore = () => {
+    console.log('aaa')
+  }
 
+  handleOnClickPeople = () => {
+    const { history } = this.props;
+    history.push('/admin');
+  }
+
+  handleOnClickRemind = () => {
+    const { history } = this.props;
+    history.push('/myInfo');
   }
 
   render() {
     const { listData, loading } = this.props;
     return (
       <HomePage>
-        <Navigation />
+        <Navigation
+          news={0}
+          onClickPeople={this.handleOnClickPeople}
+          onClickRemind={this.handleOnClickRemind}
+        />
         <TabNavigation />
         { loading && (<Load />) }
         {
           !loading && (
-            <div className="wrap" id="wrap" ref={wrap => this.wrap = wrap} style={{ marginTop: '1rem', position: 'absolute', width: '100%', background: '#e8e8e8', overflow: 'scroll', height: '100%' }}>
-              <PullRefresh onRefresh={this.onRefresh} container={'wrap'} />
-              <ListContainer>
-                {
-                  listData.map((item, i) => <ListItem key={i} dataSource={item} itemClick={this.handleOnClick(item.get('id'))} />)
-                }
-              </ListContainer>
-            </div>
+            <ListContainer innerRef={wrap => this.wrap = wrap}>
+            <Tloader
+              initializing={0}
+              onLoadMore={this.onLoadMore}
+            >
+              {
+                listData.map((item, i) => <ListItem key={i} dataSource={item} itemClick={this.handleOnClick(item.get('id'))} />)
+              }
+            </Tloader>
+            </ListContainer>
           )
         }
       </HomePage>
