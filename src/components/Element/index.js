@@ -180,6 +180,20 @@ export const InputLabel = styled.div`
 
 `;
 
+export const AdminInfo = styled.div`
+  position: absolute;
+  margin-top: 1.6rem;
+  background: #fff;
+  width: 100%;
+`;
+
+export const BarBtn = styled.div`
+  position: absolute;
+  margin-top: 4rem;
+  width: 100%;
+  background: #fff;
+`;
+
 /**
 |--------------------------------------------------
 | form

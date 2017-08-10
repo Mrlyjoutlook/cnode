@@ -32,7 +32,7 @@ class ListItem extends Component {
           <CardTitle>{dataSource.get('title')}</CardTitle>
         </div>
         <CardBottom data-flex="main:justify cross:center">
-          <CardName>{dataSource.get('author').loginname}</CardName>
+          <CardName>{dataSource.get('author').loginname || 'node'}</CardName>
           <CardTime>
             <img src={time_fill} alt=""/>
             <span>{moment(dataSource.get('last_reply_at')).fromNow()}</span>
